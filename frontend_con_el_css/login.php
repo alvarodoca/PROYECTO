@@ -1,9 +1,15 @@
 <?php
 session_start();
+require_once('/var/www/config/database.php');
 
-// Credenciales válidas
 const VALID_USERNAME = 'admin';
 const VALID_PASSWORD = 'admin';
+
+// Redirigir si ya está autenticado
+if ($_SESSION['authenticated'] ?? false) {
+    header('Location: index.php');
+    exit();
+}
 
 // Procesar formulario
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -12,19 +18,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
     if ($username === VALID_USERNAME && $password === VALID_PASSWORD) {
         $_SESSION['authenticated'] = true;
+        $_SESSION['username'] = $username;
+        
+        try {
+            // Registrar el inicio de sesión
+            $db = new Database();
+            $db->logLogin($username);
+        } catch (Exception $e) {
+            // Log del error sin mostrar detalles al usuario
+            error_log("Error al registrar acceso: " . $e->getMessage());
+        }
+        
         header('Location: index.php');
         exit();
     } else {
+        // Retraso de seguridad contra fuerza bruta
+        sleep(2);
         $error = "Credenciales incorrectas";
     }
 }
-
-// Si ya está autenticado, redirigir
-if ($_SESSION['authenticated'] ?? false) {
-    header('Location: index.php');
-    exit();
-}
 ?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>

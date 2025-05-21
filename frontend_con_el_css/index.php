@@ -377,6 +377,13 @@ $serverStatus = [
             </div>
         </div>
     </div>
+
+    <!-- Botón para ver historial de logins -->
+    <div style="margin-top: 40px; text-align: center;">
+        <a href="ver_logins.php" class="btn btn-primary" style="max-width: 300px; margin: 0 auto;">
+            <i class="fas fa-user-check"></i> Ver Historial de Logins
+        </a>
+    </div>
     
     <script>
         function showConfirmation() {

@@ -18,6 +18,3 @@ spec:
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
-        envFrom:
-        - secretRef:
-            name: aws-secrets

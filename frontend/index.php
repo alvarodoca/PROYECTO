@@ -7,12 +7,14 @@ if (!($_SESSION['authenticated'] ?? false)) {
     exit();
 }
 
-// Simular estado del servidor (puedes reemplazar con lógica real)
-$serverStatus = [
-    'deployed' => file_exists('/var/www/terraform/terraform.tfstate'),
-    'last_deploy' => date('Y-m-d H:i:s', filemtime('/var/www/terraform/terraform.tfstate') ?: time()),
-];
+// Verificar estado del servidor
+$stateFile = '/var/www/terraform/terraform.tfstate';
+$fileExists = @file_exists($stateFile); // Usamos @ para silenciar posibles warnings
 
+$serverStatus = [
+    'deployed' => $fileExists,
+    'last_deploy' => $fileExists ? date('Y-m-d H:i:s', @filemtime($stateFile)) : 'Nunca',
+];
 
 ?>
 <!DOCTYPE html>

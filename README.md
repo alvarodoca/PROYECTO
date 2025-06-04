@@ -34,3 +34,5 @@ Cada vez que se despliega o destruye la infraestructura, el archivo `terraform.t
 * ./Dockerfile
 
 * ./nginx.conf
+
+**El resto de archivos y directorios que no estan nombrados en la estructura fueron pruebas.**

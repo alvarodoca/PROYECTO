@@ -31,6 +31,9 @@ Cada vez que se despliega o destruye la infraestructura, el archivo `terraform.t
 * ./k8s/*
     * Esta el deployment y el service de eks.
 
+* ./aws-config/*
+    * Las claves de aws que le pasamos al servidor nginx para que pueda acceder a aws.
+
 * ./Dockerfile
 
 * ./nginx.conf

@@ -37,5 +37,10 @@ $logs = $db->getLoginHistory(20);
         </tr>
         <?php endforeach; ?>
     </table>
+    <div style="margin-top: 20px;">
+        <a href="index.php" style="text-decoration: none;">
+            <button style="padding: 10px 20px; font-size: 16px;">Volver al Inicio</button>
+        </a>
+    </div>
 </body>
 </html>
